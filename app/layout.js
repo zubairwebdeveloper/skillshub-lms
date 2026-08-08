@@ -1,29 +1,45 @@
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/ModeToggle";
-import Footer from "@/components/Footer";
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
+import AuthProvider from "@/context/AuthProvider";
+import { Toaster } from "@/components/ui/sonner";
+
+/* =========================================================
+   FONTS
+========================================================= */
+
+const manrope = localFont({
+  src: "./fonts/Manrope-VariableFont_wght.ttf",
   variable: "--font-sans",
   display: "swap",
+  weight: "200 800",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
+const jetbrainsMono = localFont({
+  src: "./fonts/JetBrainsMono-VariableFont_wght.ttf",
   variable: "--font-mono",
   display: "swap",
+  weight: "100 800",
 });
+
+/* =========================================================
+   METADATA
+========================================================= */
 
 export const metadata = {
   metadataBase: new URL("https://your-domain.com"),
+
   title: {
     default: "LMS Skills Hub | Learn Web Development, AI & Programming",
     template: "%s | LMS Skills Hub",
   },
+
   description:
-    "LMS Skills Hub is a modern online learning platform offering premium courses in Web Development, React, Next.js, JavaScript, AI, Chatbot Automation, Firebase, and more. Learn with practical projects, expert guidance, and career-focused content.",
+    "LMS Skills Hub is a modern online learning platform offering premium courses in Web Development, React, Next.js, JavaScript, AI, Chatbot Automation, Firebase, and more.",
 
   keywords: [
     "LMS Skills Hub",
@@ -36,7 +52,6 @@ export const metadata = {
     "Firebase",
     "AI",
     "Chatbot Development",
-    "Coding Bootcamp",
     "Online Learning",
     "Developer Courses",
   ],
@@ -71,37 +86,45 @@ export const metadata = {
   },
 };
 
+/* =========================================================
+   ROOT LAYOUT
+========================================================= */
+
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakarta.variable} ${jetbrainsMono.variable} scroll-smooth`}
+      data-scroll-behavior="smooth"
+      className={`${manrope.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen  antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
+      <body className="min-h-screen bg-background antialiased">
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="flex min-h-screen flex-col">
+              <Navbar />
 
-            <main className="flex-1">
-              <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-                {children}
+              <main className="flex-1">
+                <div className="mx-auto w-full max-w-7xl px-1 py-8 md:px-4 lg:px-8">
+                  {children}
+                </div>
+              </main>
+
+              <Toaster position="top-center" />
+
+              <Footer />
+
+              <div className="fixed bottom-6 right-6 z-[9999]">
+                <ModeToggle />
               </div>
-            </main>
-
-            <Footer />
-
-            {/* Floating Theme Toggle */}
-            <div className="fixed bottom-6 right-6 z-[9999]">
-              <ModeToggle />
             </div>
-          </div>
-        </ThemeProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
