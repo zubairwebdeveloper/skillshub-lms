@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { User, LayoutDashboard, LogOut } from "lucide-react";
-
+import { Button } from "./ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import {
   AlertDialog,
@@ -45,14 +45,14 @@ export default function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 rounded-full p-1 pr-3 hover:bg-slate-100 transition">
+        <button className="flex items-center gap-2 rounded-full p-1 pr-3  transition">
           <Avatar className="h-9 w-9">
             <AvatarImage
               src={user.photoURL ?? ""}
               alt={user.displayName ?? "User"}
             />
 
-            <AvatarFallback className="bg-blue-600 text-white">
+            <AvatarFallback className="bg-blue-600 dark:text-white text-white">
               {getInitials(user.displayName)}
             </AvatarFallback>
           </Avatar>
@@ -61,7 +61,7 @@ export default function UserDropdown() {
 
       <DropdownMenuContent align="end" className="w-60">
         <DropdownMenuLabel>
-          <p className="font-semibold text-blue-700 text-lg py-2">
+          <p className="font-semibold text-blue-700 text-lg py-2 dark:text-white">
             {user.displayName || "User"}
           </p>
 
@@ -90,13 +90,10 @@ export default function UserDropdown() {
 
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <DropdownMenuItem
-              onSelect={(e) => e.preventDefault()}
-              className="cursor-pointer text-red-600 focus:text-red-600"
-            >
+            <Button variant="default" className="w-full rounded-md">
               <LogOut className="mr-2 h-4 w-4" />
               Logout
-            </DropdownMenuItem>
+            </Button>
           </AlertDialogTrigger>
 
           <AlertDialogContent>
@@ -104,8 +101,8 @@ export default function UserDropdown() {
               <AlertDialogTitle>Logout?</AlertDialogTitle>
 
               <AlertDialogDescription>
-                Are you sure you want to log out? You&apos;ll need to sign in again
-                to access your account.
+                Are you sure you want to log out? You&apos;ll need to sign in
+                again to access your account.
               </AlertDialogDescription>
             </AlertDialogHeader>
 
@@ -114,7 +111,8 @@ export default function UserDropdown() {
 
               <AlertDialogAction
                 onClick={logout}
-                className="bg-red-600 text-white hover:bg-red-700 focus:ring-red-600 px-3 py-2 rounded-md">
+                className="bg-red-600 text-white hover:bg-red-700 focus:ring-red-600 px-3 py-2 rounded-md"
+              >
                 Logout
               </AlertDialogAction>
             </AlertDialogFooter>

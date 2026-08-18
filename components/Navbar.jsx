@@ -36,16 +36,22 @@ const home = [
     href: "/about",
   },
   {
-    name: "Contact",
+    name: "Courses",
     description:
-      "Have a question or need help? Get in touch with the Skills Hub team.",
-    href: "/contact",
+      "Explore our premium courses and learn practical, in-demand skills from beginner to advanced.",
+    href: "/courses",
   },
   {
     name: "Pricing",
     description:
       "Choose the right learning plan and unlock premium courses and features.",
     href: "/Pricing",
+  },
+  {
+    name: "Contact",
+    description:
+      "Have a question or need help? Get in touch with the Skills Hub team.",
+    href: "/contact",
   },
 ];
 
@@ -167,7 +173,7 @@ function NavLink({ href, children }) {
   return (
     <Link
       href={href}
-      className={`group relative inline-flex h-10 items-center justify-center px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+      className={`group relative inline-flex h-10 items-center justify-center px-4 py-2 text-md font-medium transition-colors duration-200 ${
         isActive ? "text-blue-600" : "text-slate-700 hover:text-blue-600"
       }`}
     >
@@ -207,18 +213,18 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-22 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 px-4  border-b bg-background/80 backdrop-blur-xl dark:bg-gray-800">
+      <div className="mx-auto flex h-22 max-w-7xl items-center justify-between  ">
         {/* ================= LOGO ================= */}
 
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 ">
           <Image
             src="/logo.png"
             alt="Skills Hub"
             width={180}
             height={50}
             priority
-            className="h-auto md:w-80 md:pt-4"
+            className="h-auto md:w-80 md:pt-4 dark:invert"
           />
         </Link>
 
@@ -229,7 +235,7 @@ export default function Navbar() {
             {/* ================= HOME ================= */}
 
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="group relative font-medium text-slate-700 transition-colors duration-200 hover:text-blue-600 data-[state=open]:text-blue-600">
+              <NavigationMenuTrigger className="group relative font-medium text-slate-700 transition-colors duration-200 hover:text-blue-600  data-[state=open]:text-blue-600">
                 Home
                 <span className={triggerUnderline} />
               </NavigationMenuTrigger>
@@ -242,11 +248,11 @@ export default function Navbar() {
                       href={item.href}
                       className="group rounded-xl p-4 transition-colors hover:bg-accent"
                     >
-                      <div className="mb-1 text-sm font-semibold group-hover:text-blue-600">
+                      <div className="mb-1 text-md font-semibold group-hover:text-blue-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors">
                         {item.name}
                       </div>
 
-                      <p className="text-xs leading-relaxed text-muted-foreground">
+                      <p className="text-sm leading-relaxed text-muted-foreground">
                         {item.description}
                       </p>
                     </Link>
@@ -270,11 +276,11 @@ export default function Navbar() {
                       href={item.href}
                       className="group rounded-xl p-4 transition-colors hover:bg-accent"
                     >
-                      <div className="mb-1 text-sm font-semibold group-hover:text-blue-600">
+                      <div className="mb-1 text-md font-semibold group-hover:text-blue-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors">
                         {item.name}
                       </div>
 
-                      <p className="text-xs leading-relaxed text-muted-foreground">
+                      <p className="text-sm leading-relaxed text-muted-foreground">
                         {item.description}
                       </p>
                     </Link>
@@ -299,11 +305,11 @@ export default function Navbar() {
                       href={item.href}
                       className="group rounded-xl p-4 transition-colors hover:bg-accent"
                     >
-                      <div className="mb-1 text-sm font-semibold group-hover:text-blue-600">
+                      <div className="mb-1 text-md font-semibold group-hover:text-blue-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors">
                         {item.name}
                       </div>
 
-                      <p className="text-xs leading-relaxed text-muted-foreground">
+                      <p className="text-sm leading-relaxed text-muted-foreground">
                         {item.description}
                       </p>
                     </Link>
@@ -322,9 +328,9 @@ export default function Navbar() {
 
               <NavigationMenuContent>
                 <div className="w-[360px] p-4">
-                  <h3 className="text-sm font-semibold">Choose your plan</h3>
+                  <h3 className="text-md font-semibold">Choose your plan</h3>
 
-                  <p className="mt-1 text-xs text-muted-foreground">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     Get access to premium learning content.
                   </p>
 
@@ -335,11 +341,11 @@ export default function Navbar() {
                         href={item.href}
                         className="group block rounded-xl p-3 hover:bg-accent"
                       >
-                        <div className="text-sm font-semibold group-hover:text-blue-600">
+                        <div className="text-md font-semibold group-hover:text-blue-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors">
                           {item.name}
                         </div>
 
-                        <p className="mt-1 text-xs text-muted-foreground">
+                        <p className="mt-1 text-sm text-muted-foreground">
                           {item.description}
                         </p>
                       </Link>
@@ -362,14 +368,14 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium transition-all hover:border-blue-600 hover:text-blue-600"
+                className="rounded-xl border border-slate-200 px-5 py-2.5 text-md font-medium transition-all hover:border-blue-600 hover:text-blue-600"
               >
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/25"
+                className="rounded-xl bg-blue-600 px-5 py-2.5 text-md font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/25"
               >
                 Get Started
               </Link>

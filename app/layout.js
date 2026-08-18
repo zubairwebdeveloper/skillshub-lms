@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-
+import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -31,7 +31,7 @@ const jetbrainsMono = localFont({
 ========================================================= */
 
 export const metadata = {
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL("https://skillshub-lms-zeta.vercel.app/"),
 
   title: {
     default: "LMS Skills Hub | Learn Web Development, AI & Programming",
@@ -98,33 +98,35 @@ export default function RootLayout({ children }) {
       data-scroll-behavior="smooth"
       className={`${manrope.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-background antialiased">
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="flex min-h-screen flex-col">
-              <Navbar />
+      <body className="min-h-screen  antialiased dark:bg-gray-800">
+        <TooltipProvider>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div className="flex min-h-screen flex-col">
+                <Navbar />
 
-              <main className="flex-1">
-                <div className="mx-auto w-full max-w-7xl px-1 py-8 md:px-4 lg:px-8">
-                  {children}
+                <main className="flex-1">
+                  <div className="mx-auto w-full max-w-7xl px-1 py-8 md:px-4 lg:px-8">
+                    {children}
+                  </div>
+                </main>
+
+                <Toaster position="top-center" />
+
+                <Footer />
+
+                <div className="fixed bottom-6 right-6 z-[9999]">
+                  <ModeToggle />
                 </div>
-              </main>
-
-              <Toaster position="top-center" />
-
-              <Footer />
-
-              <div className="fixed bottom-6 right-6 z-[9999]">
-                <ModeToggle />
               </div>
-            </div>
-          </ThemeProvider>
-        </AuthProvider>
+            </ThemeProvider>
+          </AuthProvider>
+        </TooltipProvider>
       </body>
     </html>
   );
